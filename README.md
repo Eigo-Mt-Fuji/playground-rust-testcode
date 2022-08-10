@@ -23,3 +23,9 @@ cargo bench
 ```
 cargo doc
 ```
+
+- run cli app( use clap)
+
+```
+cargo run -- \*.md ./README.md
+```
