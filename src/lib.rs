@@ -1,6 +1,5 @@
-mod multiply;
-pub use crate::multiply::mul;
-
+mod calculator;
+pub use crate::calculator::multiply::mul;
 
 pub fn add(a: u32, b: u32) -> u32 {
     a + b
