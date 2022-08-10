@@ -1,4 +1,5 @@
-mod super_oracle;
+// pub qualifierないと、テストコードやrust docのexampleから参照できないので注意
+pub mod super_oracle;
 
 mod calculator;
 pub use crate::calculator::multiply::mul;
@@ -27,9 +28,9 @@ mod tests {
         let mut oracle = MockSuperOracle::new();
         oracle.expect_connect_to_god()    .with(eq("Give me 100 coin")).times(1).return_const(100 as u32);
 
-        let mut wallet = MyWallet::new();
+        let mut wallet = MyWallet::new(10000);
         depend_god(&mut wallet, &oracle).await;
-        
+        assert_eq!(wallet.balance, 10100);
         println!("wallet.balance={}", &wallet.balance);
     }
 }

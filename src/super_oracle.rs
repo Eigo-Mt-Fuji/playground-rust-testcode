@@ -1,3 +1,5 @@
+#![crate_name = "adder"]
+
 use async_trait::async_trait;
 use mockall::automock;
 
@@ -8,15 +10,31 @@ pub trait SuperOracle {
     async fn connect_to_god(&self, message: &str) -> u32;
 }
 
+/// A wallet must have a balance
+/// お財布はお金が入っていてこそ意味がある。
 pub struct MyWallet {
     pub balance: u32,
 }
 impl MyWallet {
-    // dont forget pub qualifier  if not so, error E0425 private associated function
-    pub fn new() -> Self {
+
+    /// Returns a wallet instance
+    /// 新しいMyWalletを返します。
+    /// dont forget pub qualifier  if not so, error E0425 private associated function
+    /// # Arguments
+    ///
+    /// * `balance` - how much your wallet contains a money(unit: JPY)
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// extern crate adder;
+    /// use adder::super_oracle::MyWallet;
+    /// let wallet = MyWallet::new(10000);
+    /// ```
+    pub fn new(balance: u32) -> Self {
         MyWallet{
             // 1万円ください
-            balance: 10000,
+            balance: balance,
         }
     }
 }
