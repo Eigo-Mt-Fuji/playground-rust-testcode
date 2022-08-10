@@ -2,7 +2,7 @@
 
 mod tests {
   use adder::add;
-
+  
   #[test]
   fn test_add() {
     let res = add(1,2);
